@@ -17,7 +17,6 @@ export default class App extends Component {
 	}
 
 	getLatLng = (address, api) => {
-		// AIzaSyBS-H0BgaS8NlqjGC-zyAtEofZMfyo_0As
 		let url = `https://maps.google.com/maps/api/geocode/json?address=${address}=&key=${api}`;
 		axios
 			.get(url)

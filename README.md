@@ -1,4 +1,4 @@
-# react-lat-lng
+# React Latitude Longitude Fetcher
 
 Get Latitude and Longitude from Address with Google Map API
 
