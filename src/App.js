@@ -1,26 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import axios from "axios";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Header from "./component/Header";
+import Form from "./component/Form";
+import Table from "./component/Table";
+
+import "./bootstrap.min.css";
+import "./App.css";
+
+export default class App extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			results: ""
+		};
+	}
+
+	getLatLng = (address, api) => {
+		// AIzaSyBS-H0BgaS8NlqjGC-zyAtEofZMfyo_0As
+		let url = `https://maps.google.com/maps/api/geocode/json?address=${address}=&key=${api}`;
+		axios
+			.get(url)
+			.then(res => {
+				this.setState({
+					results: res.data
+				});
+			})
+			.catch(error => {
+				console.log(error);
+			});
+	};
+
+	render() {
+		return (
+			<div className="App">
+				<Header />
+				<Form getAddress={this.getLatLng} />
+				<Table results={this.state.results} />
+			</div>
+		);
+	}
 }
-
-export default App;
