@@ -5,6 +5,7 @@
 	"homepage": "https://asikur22.github.io/react-lat-lng",
 	"dependencies": {
 		"axios": "^0.19.0",
+		"js-cookie": "^2.2.1",
 		"react": "^16.9.0",
 		"react-dom": "^16.9.0",
 		"react-scripts": "3.1.1"

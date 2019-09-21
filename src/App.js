@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 import Header from "./component/Header";
 import Form from "./component/Form";
@@ -12,7 +13,8 @@ export default class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			results: ""
+			results: "",
+			apiStatus: true
 		};
 	}
 
@@ -21,9 +23,18 @@ export default class App extends Component {
 		axios
 			.get(url)
 			.then(res => {
+				console.log(res.data);
 				this.setState({
 					results: res.data
 				});
+
+				if (typeof res.data.error_message !== "undefined") {
+					this.setState({
+						apiStatus: false
+					});
+				} else {
+					Cookies.set("api", api);
+				}
 			})
 			.catch(error => {
 				console.log(error);
@@ -34,7 +45,10 @@ export default class App extends Component {
 		return (
 			<div className="App">
 				<Header />
-				<Form getAddress={this.getLatLng} />
+				<Form
+					getAddress={this.getLatLng}
+					apiStatus={this.state.apiStatus}
+				/>
 				<Table results={this.state.results} />
 			</div>
 		);

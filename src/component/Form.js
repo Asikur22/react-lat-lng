@@ -1,11 +1,13 @@
 import React, { Component } from "react";
+import Cookies from "js-cookie";
 
 export default class Form extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			address: "",
-			api: "",
+			apiStatus: this.props.apiStatus,
+			api: Cookies.get("api") ? Cookies.get("api") : "",
 			error: "",
 			results: ""
 		};
@@ -14,6 +16,17 @@ export default class Form extends Component {
 				Both Fields are required!
 			</div>
 		);
+	}
+
+	componentDidUpdate(prevProps) {
+		if (prevProps.apiStatus !== this.props.apiStatus) {
+			if (this.props.apiStatus !== true) {
+				this.setState({
+					api: "",
+					apiStatus: false
+				});
+			}
+		}
 	}
 
 	onChangeInput = event => {
@@ -40,7 +53,10 @@ export default class Form extends Component {
 
 			let place = encodeURI(address);
 			this.props.getAddress(place, api);
-			this.setState({ address: "", api: "" });
+
+			this.setState({
+				address: ""
+			});
 		} else {
 			this.setState({ error: this.errormessage });
 		}
@@ -56,6 +72,7 @@ export default class Form extends Component {
 						<a
 							className="text-info"
 							target="_blank"
+							rel="noopener noreferrer"
 							href="https://developers.google.com/maps/documentation/javascript/get-api-key">
 							Here
 						</a>
