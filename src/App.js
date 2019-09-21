@@ -33,7 +33,7 @@ export default class App extends Component {
 						apiStatus: false
 					});
 				} else {
-					Cookies.set("api", api);
+					Cookies.set("api", api, { expires: 365 });
 				}
 			})
 			.catch(error => {
