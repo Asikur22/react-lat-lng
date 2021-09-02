@@ -2,12 +2,14 @@
 	"name": "react-lat-lng",
 	"description": "Get Latitude and Longitude from Address with Google Map API",
 	"version": "0.1.0",
+	"license": "MIT",
 	"homepage": "https://asikur22.github.io/react-lat-lng",
 	"dependencies": {
 		"axios": "^0.21.1",
 		"js-cookie": "^2.2.1",
 		"react": "^16.9.0",
 		"react-dom": "^16.9.0",
+		"react-ga": "^3.3.0",
 		"react-scripts": "^4.0.3"
 	},
 	"scripts": {

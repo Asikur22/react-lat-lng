@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
+import ReactGA from "react-ga";
 
 import Header from "./component/Header";
 import Form from "./component/Form";
@@ -14,7 +15,7 @@ export default class App extends Component {
 		super(props);
 		this.state = {
 			results: "",
-			apiStatus: true
+			apiStatus: true,
 		};
 	}
 
@@ -22,24 +23,29 @@ export default class App extends Component {
 		let url = `https://maps.google.com/maps/api/geocode/json?address=${address}=&key=${api}`;
 		axios
 			.get(url)
-			.then(res => {
+			.then((res) => {
 				console.log(res.data);
 				this.setState({
-					results: res.data
+					results: res.data,
 				});
 
 				if (typeof res.data.error_message !== "undefined") {
 					this.setState({
-						apiStatus: false
+						apiStatus: false,
 					});
 				} else {
 					Cookies.set("api", api, { expires: 365 });
 				}
 			})
-			.catch(error => {
+			.catch((error) => {
 				console.log(error);
 			});
 	};
+
+	componentDidMount() {
+		ReactGA.initialize("UA-61977704-11");
+		ReactGA.pageview(window.location.pathname + window.location.search);
+	}
 
 	render() {
 		return (
