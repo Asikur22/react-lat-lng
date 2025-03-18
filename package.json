@@ -5,7 +5,7 @@
 	"license": "MIT",
 	"homepage": "https://asikur22.github.io/react-lat-lng",
 	"dependencies": {
-		"axios": "^0.21.1",
+		"axios": "^1.8.2",
 		"js-cookie": "^2.2.1",
 		"react": "^16.9.0",
 		"react-dom": "^16.9.0",
