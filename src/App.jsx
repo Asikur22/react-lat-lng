@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
-import ReactGA from "react-ga";
 
 import Header from "./component/Header";
 import Form from "./component/Form";
@@ -41,11 +40,6 @@ export default class App extends Component {
 				console.log(error);
 			});
 	};
-
-	componentDidMount() {
-		ReactGA.initialize("UA-61977704-11");
-		ReactGA.pageview(window.location.pathname + window.location.search);
-	}
 
 	render() {
 		return (

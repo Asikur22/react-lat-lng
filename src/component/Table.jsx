@@ -14,6 +14,7 @@ export default class Table extends Component {
 					}
 				}
 			} = results;
+
 			return (
 				<div className="container">
 					<div className="alert alert-info" role="alert">
